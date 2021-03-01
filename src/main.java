@@ -5,7 +5,7 @@ import java.util.Scanner;
  */
 
 /**
- * @author John
+ * @author John W. Fore
  *
  */
 public class main {
@@ -49,7 +49,10 @@ public class main {
 			 * (4) the main Menu is shown.
 			 */
 			case 1:
-				System.out.println("Adding Video");
+				System.out.println("Please enter the name of the Video");
+				String video = input.nextLine();
+				//Insert into data structure if valid. 
+				
 				break;
 			/**
 			 * (1) a message is printed to ask the information of the video;
