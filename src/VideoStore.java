@@ -8,12 +8,22 @@ import java.util.Scanner;
  * @author John W. Fore
  *
  */
-public class main {
+public class VideoStore {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
+		/**
+		 * for loop checks for arguments
+		 */
+		for(String s: args) {
+			 if(s.contains("SLL")) {
+				 System.out.println("Yes");
+			 }
+		}
 		
 		int numb;
 		
