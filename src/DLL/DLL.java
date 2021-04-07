@@ -1,6 +1,6 @@
 package DLL;
 
-public class DList {
+public class DLL {
 	
 	private DNode header;
 	private DNode trailer;
@@ -9,7 +9,7 @@ public class DList {
 	/**
 	 * Constructor
 	 */
-	public DList(){
+	public DLL(){
 		header = new DNode(null, null, null);
 		trailer = new DNode(null, header, null);
 		header.setNext(trailer);
@@ -122,7 +122,7 @@ public class DList {
 	 * @param M
 	 * @return
 	 */
-	public DList concatenate(DList L, DList M) {
+	public DLL concatenate(DLL L, DLL M) {
 		
 		if( L == null) {
 			return M;
@@ -139,6 +139,39 @@ public class DList {
 		return L;
 	}
 	
+	/**
+	 * searches DLL to find if the given string is in SLL
+	 * @param title
+	 */
+//	public boolean search(String title) {
+//		
+//	}
+	
+	/**
+	 * return the index i of element x
+	 * @param element
+	 * @return 
+	 */
+//	public int findIndex(String element) {
+//		
+//	}
+	
+	/**
+	 * Adds node at specified index
+	 * @param index
+	 * @param value
+	 */
+	public void addNodeAt(int index, Object value) {
+		
+	}
+	
+	/**
+	 * removes node at specified index
+	 * @param index
+	 */
+	public void removeNodeAt(int index) {
+		
+	}
 	/**
 	 * Need TODO:
 	 * Add a method in DList to search whether it contains an element x  

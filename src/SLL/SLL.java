@@ -144,19 +144,102 @@ public class SLL {
     	   return current;   
        }
 	}
-}
 	
 	/**
-	 * Need TODO:
-	 *  Add a method in SLL to search whether it contains an element x  
-	 *  Add a method in SLL to return the index i of element x  
-	 *  Add a method in SLL to add a node at index i
-	 *  Add a method in SLL to remove the node at index i
+	 * searches SLL to find if the given string is in SLL
+	 * @param title
 	 */
+	public boolean search(String title) {
+		
+	        SNode current = head;  //Initialize current
+	       
+	        while (current != null) {
+	            if (current.getElement().toString().equalsIgnoreCase(title)) {
+	                  return true;    //data found
+	            }else {
+	            	current = current.getNext();
+	            }
+	        }
+	        return false;    //data not found
+	    
+	}
 	
+	/**
+	 * return the index i of element x
+	 * @param element
+	 * @return 
+	 */
+	public int findIndex(String element) {
+		
+		int i = 0;
+        SNode current = head;  //Initialize current
+        
+        while (current != null) {
+            if (current.getElement().toString().equalsIgnoreCase(element)) {
+                  return i;    //data found
+            }else {
+	            current = current.getNext();
+	            i++;
+            }
+        }
+        
+        return 9999; //error
+	}
 	
+	/**
+	 * Adds node at specified index
+	 * @param index
+	 * @param value
+	 */
+	public void addNodeAt(int index, Object value) {
+		SNode newNode = new SNode(value, null);
+		 
+	    // insert as the new head?
+	    if (index == 0) {
+	        // The 1st case.
+	        newNode.setNext(head);
+	        head = newNode;
+	    } else {
+	        // The 2nd case.
+	        // start from the head:
+	        SNode node = head;
+	        // find position just before the expected one:
+	        while (--index > 0) {
+	            node = node.getNext();
+	        }
+	        // insert the new node:
+	        newNode.setNext(node.getNext());
+	        node.setNext(newNode);
+	    }
+	}
 	
-	
-	
-	
-
+	/**
+	 * removes node at specified index
+	 * @param index
+	 */
+	public void removeNodeAt(int index) {
+		
+		SNode temp = head;
+		SNode current = head;
+		int size = 0;
+		
+		while(temp != null) {
+			size++;
+			temp = temp.getNext();
+		}
+		
+		if(index<0 || index >= size) {
+			System.out.println("ERROR: List index out of bounds");
+		}
+		if(index == 0) {
+			head = head.getNext();
+		}
+		else {
+			for(int i = 0; i < index - 1; i++) {
+				current = current.getNext();
+			}
+			current.setNext(current.getNext().getNext());
+		}
+		
+	}
+}
