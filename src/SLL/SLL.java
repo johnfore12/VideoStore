@@ -1,5 +1,6 @@
 package SLL;
 
+import Video.Video;
 
 /**
  * This class hosts all methods associated to 
@@ -42,7 +43,7 @@ public class SLL {
 		SNode current = head;
 	
 		while(current != null) {
-			System.out.print(current.getElement() + " ");
+			System.out.print(current.getElement().toString() + " ");
 			current = current.getNext();
 		}
 		System.out.println();
@@ -151,17 +152,41 @@ public class SLL {
 	 */
 	public boolean search(String title) {
 		
-	        SNode current = head;  //Initialize current
-	       
-	        while (current != null) {
-	            if (current.getElement().toString().equalsIgnoreCase(title)) {
-	                  return true;    //data found
-	            }else {
-	            	current = current.getNext();
-	            }
-	        }
-	        return false;    //data not found
+        SNode current = head;  //Initialize current
+        
+        Video temp ;
+        temp =(Video) current.getNext().getElement();
+        System.out.print(temp.getTitle());
+        
+        while (current != null) {
+            if (current.getElement().toString().equalsIgnoreCase(title)) {
+                  return true;    //data found
+            }else {
+            	current = current.getNext();
+            }
+        }
+        return false;    //data not found
 	    
+	}
+	/**
+	 * Searches SLL to find if the given string matches a Video
+	 * @param title
+	 * @return
+	 */
+	public boolean searchVideo(String title) {
+		
+		SNode current = head;
+		
+		while (current != null) {
+			Video video;
+			video = (Video) current.getElement();
+            if (video.getTitle().equalsIgnoreCase(title)) {
+                  return true;    //data found
+            }else {
+            	current = current.getNext();
+            }
+        }
+        return false;   
 	}
 	
 	/**

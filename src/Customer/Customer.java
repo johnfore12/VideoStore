@@ -3,22 +3,30 @@ package Customer;
 public class Customer {
 	
 	private String name;
-	private String id;
-	//private rentVideo;
+	private int id;
+	
+	public Customer(String name, int id) {
+		name = this.name;
+		id = this.id;
+	}
 	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 	
-	
-
+	public String toString() {
+		return "[" + name + ", " + id + "]";
+	}
 }

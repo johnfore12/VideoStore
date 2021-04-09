@@ -1,5 +1,8 @@
 package DLL;
 
+import SLL.SNode;
+import Video.Video;
+
 public class DLL {
 	
 	private DNode header;
@@ -135,26 +138,74 @@ public class DLL {
 			L.trailer = M.trailer;
 			L.size = L.size + M.size;
 		}
-		
 		return L;
 	}
 	
 	/**
-	 * searches DLL to find if the given string is in SLL
+	 * searches DLL to find if the given string is in DLL
 	 * @param title
 	 */
-//	public boolean search(String title) {
-//		
-//	}
+	public boolean search(String title) {
+		
+		DNode current = header.getNext();
+	       
+		if(current.getElement() == null) {
+			System.out.println("List is empty");
+			return false;
+		}
+		while(current.getElement() != null) {
+			if(current.getElement().toString().equalsIgnoreCase(title)) {
+				return true;
+			}
+			current = current.getNext();
+		}
+		return false;
+	}
+	
+	/**
+	 * Searches DLL to find if the given string matches a Video
+	 * @param title
+	 * @return
+	 */
+	public boolean searchVideo(String title) {
+		
+		DNode current = header.getNext();
+		
+		while (current != null) {
+			Video video;
+			video = (Video) current.getElement();
+            if(video == null) {
+            	return false;
+            }if(video.getTitle().equalsIgnoreCase(title)) {
+            	return true;  
+            }
+            else {
+            
+            	current = current.getNext();
+            }
+        }
+        return false;   
+	}
 	
 	/**
 	 * return the index i of element x
 	 * @param element
 	 * @return 
 	 */
-//	public int findIndex(String element) {
-//		
-//	}
+	public int findIndex(String element) {
+		
+		DNode current = header.getNext();
+	    int count = 0;   
+	
+		while(current.getElement() != null) {
+			if(current.getElement().toString().equalsIgnoreCase(element)) {
+				return count;
+			}
+			current = current.getNext();
+			count++;
+		}
+		return 9999;  //error
+	}
 	
 	/**
 	 * Adds node at specified index
@@ -163,6 +214,18 @@ public class DLL {
 	 */
 	public void addNodeAt(int index, Object value) {
 		
+		DNode newNode = new DNode(value, null, null);
+	
+	    if (index == 0) {
+	    	addFirst(newNode);
+	    } else {
+	        DNode node = header.getNext();
+	        while (--index > 0) {
+	            node = node.getNext();
+	        }
+	        newNode.setNext(node.getNext());
+	        node.setNext(newNode);
+	    }
 	}
 	
 	/**
@@ -171,13 +234,35 @@ public class DLL {
 	 */
 	public void removeNodeAt(int index) {
 		
-	}
-	/**
-	 * Need TODO:
-	 * Add a method in DList to search whether it contains an element x  
-	 * Add a method in DList to return the index i of element x  
-	 * Add a method in DList to add a node at index i  
-	 * Add a method in DList to remove the node at index i 
-	 */
+		DNode current = header.getNext();
+		int size = size();
 
+		System.out.println("SIZE: " + size);
+		if(index<0 || index >= size) {
+			System.out.println("ERROR: List index out of bounds");
+		}
+		if(index == 0) {
+			header = header.getNext();
+		}
+		else {
+			for(int i = 0; i < index - 1; i++) {
+				current = current.getNext();
+			}
+			current.setNext(current.getNext().getNext());
+		}
+	}
+	
+	/**
+	 * returns the size of the DLL
+	 * @return
+	 */
+	public int size() {
+		DNode temp = header;
+		
+		while(temp.getElement() != null) {
+			size++;
+			temp = temp.getNext();
+		}
+		return size;
+	}
 }
