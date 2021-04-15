@@ -2,16 +2,26 @@ package BST;
 
 public class BSTNode {
 	
+	int id;
 	Object element;
 	BSTNode leftChild;
 	BSTNode rightChild;
 	
-	public BSTNode(Object element, BSTNode leftChild, BSTNode rightChild) {
+	public BSTNode(int id, Object element) {
+		this.id = id;
 		this.element = element;
-		this.leftChild = leftChild;
-		this.rightChild = rightChild;
+		this.leftChild = null;
+		this.rightChild = null;
 	}
 
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Object getElement() {
 		return element;
 	}
