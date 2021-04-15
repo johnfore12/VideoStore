@@ -6,6 +6,7 @@ import Video.Video;
 import DLL.DLL;
 import DLL.DNode;
 import BST.BST;
+import BST.BSTNode;
 import Customer.Customer;
 import AVL.AVL;
 
@@ -29,7 +30,8 @@ public class VideoStore {
 	public static AVL avlVideos = new AVL();
 	public static AVL avlCustomers = new AVL();
 	public static int customerCounter = 1;
-	public static int videoCounter = 1;
+	public static int videoCounter = 0;
+	public static int id = 0;
 	
 	/**
 	 * Driver method for project
@@ -261,6 +263,7 @@ public class VideoStore {
 			 * WORKING
 			 */
 			case 1:
+				System.out.println("Please enter the name of the Video");
 				Scanner videoInput = new Scanner(System.in);
 				String videoName = videoInput.nextLine();
 				Video video = new Video(videoName, videoCounter);
@@ -440,13 +443,25 @@ public class VideoStore {
 			 * (2) the information is entered;
 			 * (3) the video is added to the data structure if the provided information is valid;
 			 * (4) the main Menu is shown.
+			 * WORKING
 			 */
 			case 1:
 				System.out.println("Please enter the name of the Video");
+				Scanner videoInput = new Scanner(System.in);
+				String videoName = videoInput.nextLine();
+				Video video = new Video(videoName, videoCounter);
+				video.setTitle(videoName);
+				video.setId(videoCounter);
+				BSTNode bstNode = new BSTNode(id, video);
 				
-				Object videoName = input.nextLine();
-			
-				//Insert into data structure if valid. 
+				if(bstVideos.getRoot() == null) {
+					bstVideos.setRoot(bstNode);
+				}else {
+					bstVideos.insert(id, video); 
+				}
+				
+				videoCounter++;
+				id++;
 				
 				break;
 			/**
@@ -454,6 +469,7 @@ public class VideoStore {
 			 * (2) the information is entered;
 			 * (3) the video is deleted from the data structure if the provided information is valid;
 			 * (4) the main Menu is shown.
+			 * WORKING
 			 */
 			case 2:
 				System.out.println("Deleting Video");
@@ -463,9 +479,25 @@ public class VideoStore {
 			 * (2) the information is entered;
 			 * (3) the customer is added to the data structure if the provided information is valid;
 			 * (4) the main Menu is shown.	
+			 * WORKING
 			 */
 			case 3:
 				System.out.println("Adding Customer");
+				System.out.println("Please enter the name of the Customer");
+				Scanner customerInput = new Scanner(System.in);
+				String customerName = customerInput.nextLine();
+				Customer customer = new Customer(customerName, customerCounter);
+				customer.setName(customerName);
+				customer.setId(customerCounter);
+				BSTNode bstCustomerNode = new BSTNode(id, customer);
+				
+				if(bstCustomers.getRoot() == null) {
+					bstCustomers.setRoot(bstCustomerNode);
+				}else {
+					bstCustomers.insert(id, customer); 
+				}
+				
+				customerCounter++;
 				break;
 			/**
 			 * (1) a message is printed to ask the information of the customer;
@@ -484,6 +516,10 @@ public class VideoStore {
 			 */
 			case 5:
 				System.out.println("Checking if Video is in store");
+				Scanner searchInput = new Scanner(System.in);
+				System.out.println("Enter video name: ");
+				int searchValue = searchInput.nextInt();
+				System.out.print(bstVideos.searchVideo(searchValue));
 				break;
 			/**
 			 * (1) a message is printed to ask the information of the customer and video;
@@ -506,16 +542,20 @@ public class VideoStore {
 			/**
 			 * (1) all customers are printed;
 			 * (2) the main Menu is shown.
+			 * WORKING
 			 */
 			case 8:
 				System.out.println("Printing All Customers");
+				bstCustomers.print();
 				break;
 			/**
 			 * (1) all videos (in store videos and rent videos) are printed;
 			 * (2) the main Menu is shown.
+			 * WORKING
 			 */
 			case 9:
 				System.out.println("Printing All Videos");
+				bstVideos.print();
 				break;
 			/**
 			 * (1) the in store videos are printed;
@@ -542,6 +582,7 @@ public class VideoStore {
 				break;
 			/**
 			 * (1) “Goodbye” message is printed and program terminates.
+			 * WORKING
 			 */
 			case 13:
 				System.out.println("Goodbye!");
